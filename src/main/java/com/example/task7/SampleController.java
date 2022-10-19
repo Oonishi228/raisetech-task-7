@@ -12,8 +12,8 @@ import java.util.Map;
 @RestController
 public class SampleController {
     @GetMapping("/names")
-    public List<String> getNames() {
-        return List.of("koyama", "tanaka");
+    public ResponseEntity<Map<String, String>> getNames(@RequestParam String name) {
+        return ResponseEntity.ok(Map.of("message", name));
     }
 
     @PostMapping("/names")
@@ -25,7 +25,7 @@ public class SampleController {
     }
 
     @PatchMapping("/names/{id}")
-    public ResponseEntity<Map<String, String>> update(@PathVariable("id") int id, @RequestBody UpdateForm form) {
+    public ResponseEntity<Map<String, String>> update(@PathVariable("id") int id, @RequestBody @Validated UpdateForm form) {
         return ResponseEntity.ok(Map.of("message", "name successfully updated"));
     }
 
@@ -33,4 +33,5 @@ public class SampleController {
     public ResponseEntity<Map<String, String>> delete(@PathVariable("id") int id) {
         return ResponseEntity.ok(Map.of("message", "name successfully deleted"));
     }
+
 }
