@@ -6,14 +6,14 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
-import java.util.List;
 import java.util.Map;
 
 @RestController
 public class SampleController {
+
     @GetMapping("/names")
-    public ResponseEntity<Map<String, String>> getNames(@RequestParam String name) {
-        return ResponseEntity.ok(Map.of("message", name));
+    public CreateForm createForm(@RequestParam(value = "name", defaultValue = "name") String name, @RequestParam(value = "birthday", defaultValue = "0000") String birthday) {
+        return new CreateForm(String.format(name), String.format(birthday));
     }
 
     @PostMapping("/names")

@@ -8,12 +8,24 @@ public class CreateForm {
     @NotBlank
     @Length(max = 20)
     private String name;
+    private final String birthday;
+
+    public CreateForm(String name, String birthday) {
+        this.name = name;
+        this.birthday = birthday;
+    }
+
 
     public String getName() {
         return name;
     }
 
+    public String getBirthday() {
+        return birthday;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
+    
 }
