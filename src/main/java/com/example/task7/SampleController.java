@@ -18,11 +18,10 @@ public class SampleController {
 
     @PostMapping("/names")
     public ResponseEntity<Map<String, String>> create(@RequestBody @Validated UriComponentsBuilder uriBuilder) {
-        URI url = UriComponentsBuilder.fromUriString("https://oonishi.com")
-                .path("/names/id")
+        URI url = uriBuilder.path("/names/id")
                 .build()
                 .toUri();
-        return ResponseEntity.ok(Map.of("message", "name successfully created"));
+        return ResponseEntity.created(url).body(Map.of("message", "name successfully created"));
     }
 
     @PatchMapping("/names/{id}")
