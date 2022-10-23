@@ -17,8 +17,9 @@ public class SampleController {
     }
 
     @PostMapping("/names")
-    public ResponseEntity<Map<String, String>> create(@RequestBody @Validated CreateForm form) {
-        URI url = UriComponentsBuilder.fromUriString("http://localhost:8080").path("/names/id")
+    public ResponseEntity<Map<String, String>> create(@RequestBody @Validated UriComponentsBuilder uriBuilder) {
+        URI url = UriComponentsBuilder.fromUriString("https://oonishi.com")
+                .path("/names/id")
                 .build()
                 .toUri();
         return ResponseEntity.ok(Map.of("message", "name successfully created"));
