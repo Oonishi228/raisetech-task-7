@@ -17,11 +17,11 @@ public class SampleController {
     }
 
     @PostMapping("/names")
-    public ResponseEntity<String> create(@RequestBody @Validated CreateForm form) {
+    public ResponseEntity<Map<String, String>> create(@RequestBody @Validated CreateForm form) {
         URI url = UriComponentsBuilder.fromUriString("http://localhost:8080").path("/names/id")
                 .build()
                 .toUri();
-        return ResponseEntity.created(url).body("name successfully created");
+        return ResponseEntity.ok(Map.of("message", "name successfully created"));
     }
 
     @PatchMapping("/names/{id}")
