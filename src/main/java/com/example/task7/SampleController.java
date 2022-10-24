@@ -17,7 +17,7 @@ public class SampleController {
     }
 
     @PostMapping("/names")
-    public ResponseEntity<Map<String, String>> create(@RequestBody @Validated UriComponentsBuilder uriBuilder) {
+    public ResponseEntity<Map<String, String>> create(@RequestBody @Validated CreateForm form, UriComponentsBuilder uriBuilder) {
         URI url = uriBuilder.path("/names/id")
                 .build()
                 .toUri();
